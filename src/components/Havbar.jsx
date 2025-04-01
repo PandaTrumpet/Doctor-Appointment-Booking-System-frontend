@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext.jsx";
 const Havbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const { token, setToken } = useContext(AppContext);
+  const { token, setToken, userData } = useContext(AppContext);
   const logout = () => {
     setToken("");
     localStorage.removeItem("token");
@@ -40,11 +40,11 @@ const Havbar = () => {
         </NavLink>
       </ul>
       <div className="flex items-center gap-4">
-        {token ? (
+        {token && userData ? (
           <div className="flex items-center gap-2 cursor-pointer group relative">
             <img
               className="w-8 rounded-full"
-              src={assets.profile_pic}
+              src={userData.image}
               alt="Profile pic"
             />
             <img className="w-2.5" src={assets.dropdown_icon} alt="" />
