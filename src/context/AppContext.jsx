@@ -8,6 +8,9 @@ const AppContextProvider = (props) => {
   const correncySymbol = "$";
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [doctors, setDoctors] = useState([]);
+  const [token, setToken] = useState(
+    localStorage.getItem("token") ? localStorage.getItem("token") : ""
+  );
 
   const getDoctorsData = async () => {
     try {
@@ -23,15 +26,18 @@ const AppContextProvider = (props) => {
       toast.error(error.message);
     }
   };
-  useEffect(() => {
-    getDoctorsData();
-  }, []);
 
   const value = {
     backendUrl,
     doctors,
     correncySymbol,
+    setToken,
+    token,
   };
+  useEffect(() => {
+    getDoctorsData();
+  }, []);
+
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
   );
