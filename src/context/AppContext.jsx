@@ -42,6 +42,7 @@ const AppContextProvider = (props) => {
     }
   };
   const value = {
+    getDoctorsData,
     backendUrl,
     doctors,
     correncySymbol,
